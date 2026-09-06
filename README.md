@@ -13,15 +13,22 @@ TaskNote is a full-stack productivity application combining a task manager and a
 
 ## Key features
 
-- User‑scoped tasks with full CRUD, filtering, search, and sorting
-- Personal notes with auto‑save and a distraction‑free editor
+- Notes with save and a distraction‑free editor
+- Responsive, accessible UI with dark/light theme support
+- Centralized backend error handling and input validation
+- Create, edit, and delete tasks
+- Mark tasks as completed or pending
+- Search, filter, and sort tasks
+- Organize tasks based on priority and status
+- Create, edit, and delete notes
+- Notes with save functionality and a distraction-free editor
 - Responsive, accessible UI with dark/light theme support
 - Centralized backend error handling and input validation
 
 ## Tech stack
 
 - Frontend: `React`, `Vite`, `React Router`, modern CSS
-- Backend: `Node.js`, `Express`, `Mongoose` (MongoDB Atlas)
+- Backend: `Node.js`, `Express`, `Mongoose` (MongoDB)
 - Dev: `dotenv`, `nodemon`, `eslint` (optional)
 
 ## Quick start
@@ -67,13 +74,14 @@ Create a `.env` file in `server/` with the values below (see `server/.env.exampl
 
 - `MONGO_URI` — MongoDB Atlas connection string
 - `PORT` — optional server port (default 5000)
-- `VITE_API_URL` — optional client API base URL (defaults to the deployed Render API)
+- MONGO_URI=your_mongodb_connection_string PORT=5000
+- VITE_API_URL=https://tasknote-1v4l.onrender.com
 
 ## API (examples)
 
 ### Tasks
 
-- `GET /api/tasks` — list user tasks (filters: status, priority, search, sort)
+- `GET /api/tasks` — list user tasks 
 - `POST /api/tasks` — create task
 - `GET /api/tasks/:id` — get task
 - `PUT /api/tasks/:id` — update task
@@ -91,7 +99,7 @@ Create a `.env` file in `server/` with the values below (see `server/.env.exampl
 
 - Frontend: deploy the client to `Vercel` (set API base URL to the Render service)
 - Backend: deploy the `server/` to Render (set `MONGO_URI` in env)
-- Database: use MongoDB Atlas for production
+- Database: MongoDB with Mongoose
 
 ## Repository hygiene
 
