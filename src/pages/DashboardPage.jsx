@@ -4,7 +4,7 @@ import TasksSection from '../components/TasksSection';
 import NotesSection from '../components/NotesSection';
 import Settings from '../components/Settings';
 
-function DashboardPage({ user, token, onLogout, theme, onThemeToggle }) {
+function DashboardPage({ theme, onThemeToggle }) {
     const [activeTab, setActiveTab] = useState('tasks');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -15,9 +15,7 @@ function DashboardPage({ user, token, onLogout, theme, onThemeToggle }) {
                     <h1>TaskNote</h1>
                 </div>
                 <div className="header-right">
-                    <span className="user-name">Welcome, {user?.name || user?.email}</span>
                     <button onClick={() => setShowSettings(true)} className="settings-btn" title="Settings">⚙️</button>
-                    <button onClick={onLogout} className="logout-btn">Logout</button>
                 </div>
             </header>
 
@@ -41,8 +39,8 @@ function DashboardPage({ user, token, onLogout, theme, onThemeToggle }) {
             </div>
 
             <div className="dashboard-content">
-                {activeTab === 'tasks' && <TasksSection token={token} />}
-                {activeTab === 'notes' && <NotesSection token={token} />}
+                {activeTab === 'tasks' && <TasksSection />}
+                {activeTab === 'notes' && <NotesSection />}
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/notes.css';
 import API_BASE_URL from '../config/api';
 
-function NotesSection({ token }) {
+function NotesSection() {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState({ title: '', content: '' });
     const [loading, setLoading] = useState(true);
@@ -11,14 +11,12 @@ function NotesSection({ token }) {
 
     useEffect(() => {
         fetchNotes();
-    }, [token]);
+    }, []);
 
     const fetchNotes = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${API_BASE_URL}/api/notes`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await fetch(`${API_BASE_URL}/api/notes`);
             if (response.ok) {
                 const data = await response.json();
                 setNotes(data.notes || []);
@@ -39,10 +37,7 @@ function NotesSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/notes`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newNote)
             });
 
@@ -61,10 +56,7 @@ function NotesSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/notes/${noteId}`, {
                 method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title, content })
             });
 
@@ -81,7 +73,6 @@ function NotesSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/notes/${noteId}`, {
                 method: 'DELETE',
-                headers: { Authorization: `Bearer ${token}` }
             });
 
             if (response.ok) {

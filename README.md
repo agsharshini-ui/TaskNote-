@@ -2,7 +2,7 @@
 
 ## Overview
 
-TaskNote is a full‑stack productivity application combining a task manager and a personal notepad. It is a production‑quality portfolio project with a minimal black‑and‑white design system, responsive UI, `JWT` authentication, and a REST API backed by MongoDB.
+TaskNote is a full-stack productivity application combining a task manager and a personal notepad. It provides a minimal black-and-white design system, responsive UI, and a REST API backed by MongoDB.
 
 ## Repository layout
 
@@ -13,7 +13,6 @@ TaskNote is a full‑stack productivity application combining a task manager and
 
 ## Key features
 
-- Secure user authentication (register / login) with `JWT` and `bcrypt`
 - User‑scoped tasks with full CRUD, filtering, search, and sorting
 - Personal notes with auto‑save and a distraction‑free editor
 - Responsive, accessible UI with dark/light theme support
@@ -22,7 +21,7 @@ TaskNote is a full‑stack productivity application combining a task manager and
 ## Tech stack
 
 - Frontend: `React`, `Vite`, `React Router`, modern CSS
-- Backend: `Node.js`, `Express`, `Mongoose` (MongoDB Atlas), `JWT`
+- Backend: `Node.js`, `Express`, `Mongoose` (MongoDB Atlas)
 - Dev: `dotenv`, `nodemon`, `eslint` (optional)
 
 ## Quick start
@@ -40,7 +39,7 @@ TaskNote is a full‑stack productivity application combining a task manager and
 ```powershell
 cd server
 copy .env.example .env
-# edit server\.env and add MONGO_URI and JWT_SECRET
+# edit server\.env and add MONGO_URI
 npm install
 npm run dev
 ```
@@ -50,7 +49,7 @@ npm run dev
 ```bash
 cd server
 cp .env.example .env
-# edit server/.env and add MONGO_URI and JWT_SECRET
+# edit server/.env and add MONGO_URI
 npm install
 npm run dev
 ```
@@ -67,17 +66,10 @@ npm run dev
 Create a `.env` file in `server/` with the values below (see `server/.env.example`):
 
 - `MONGO_URI` — MongoDB Atlas connection string
-- `JWT_SECRET` — secret used to sign JWT tokens
 - `PORT` — optional server port (default 5000)
 - `VITE_API_URL` — optional client API base URL (defaults to the deployed Render API)
 
 ## API (examples)
-
-### Authentication
-
-- `POST /api/auth/register` — register (name, email, password)
-- `POST /api/auth/login` — login (email, password)
-- `GET /api/auth/me` — current user (requires Bearer token)
 
 ### Tasks
 
@@ -98,7 +90,7 @@ Create a `.env` file in `server/` with the values below (see `server/.env.exampl
 ## Deployment notes
 
 - Frontend: deploy the client to `Vercel` (set API base URL to the Render service)
-- Backend: deploy the `server/` to Render (set `MONGO_URI` and `JWT_SECRET` in env)
+- Backend: deploy the `server/` to Render (set `MONGO_URI` in env)
 - Database: use MongoDB Atlas for production
 
 ## Repository hygiene
@@ -108,15 +100,10 @@ Create a `.env` file in `server/` with the values below (see `server/.env.exampl
 
 ## What I learned
 
-- Implementing `JWT` authentication and secure password handling with `bcrypt`
 - Building RESTful APIs with `Express` and `Mongoose`
 - Designing a responsive, accessible React UI with `Vite`
 - Structuring a full‑stack project for deployment and maintainability
 
 ## Next steps
 
-- Implement the client‑side auth context and protected routes
-- Build the dashboard and UI pages (Login, Register, Dashboard, Tasks, Notes, Profile)
 - Add tests and CI, then deploy to `Vercel` (client) + Render (server)
-
-If you want, I can now remove leftover template files and clean up any other unwanted files — reply `remove suggested` to let me delete the likely candidates.

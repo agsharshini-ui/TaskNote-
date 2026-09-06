@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/tasks.css';
 import API_BASE_URL from '../config/api';
 
-function TasksSection({ token }) {
+function TasksSection() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [loading, setLoading] = useState(true);
@@ -10,14 +10,12 @@ function TasksSection({ token }) {
 
     useEffect(() => {
         fetchTasks();
-    }, [token]);
+    }, []);
 
     const fetchTasks = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${API_BASE_URL}/api/tasks`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await fetch(`${API_BASE_URL}/api/tasks`);
             if (response.ok) {
                 const data = await response.json();
                 setTasks(data.tasks || []);
@@ -38,10 +36,7 @@ function TasksSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/tasks`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title: newTask })
             });
 
@@ -60,10 +55,7 @@ function TasksSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
                 method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ completed: !completed })
             });
 
@@ -79,7 +71,6 @@ function TasksSection({ token }) {
         try {
             const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
                 method: 'DELETE',
-                headers: { Authorization: `Bearer ${token}` }
             });
 
             if (response.ok) {
