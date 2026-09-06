@@ -6,6 +6,9 @@ function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem('username') || '';
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -16,9 +19,20 @@ function App() {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
+  const updateUsername = (value) => {
+    const nextUsername = value.trim();
+    setUsername(nextUsername);
+    localStorage.setItem('username', nextUsername);
+  };
+
   return (
     <div className="app">
-      <DashboardPage theme={theme} onThemeToggle={toggleTheme} />
+      <DashboardPage
+        username={username}
+        onUsernameChange={updateUsername}
+        theme={theme}
+        onThemeToggle={toggleTheme}
+      />
     </div>
   );
 }

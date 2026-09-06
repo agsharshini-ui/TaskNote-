@@ -4,7 +4,7 @@ import TasksSection from '../components/TasksSection';
 import NotesSection from '../components/NotesSection';
 import Settings from '../components/Settings';
 
-function DashboardPage({ theme, onThemeToggle }) {
+function DashboardPage({ username, onUsernameChange, theme, onThemeToggle }) {
     const [activeTab, setActiveTab] = useState('tasks');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -15,12 +15,19 @@ function DashboardPage({ theme, onThemeToggle }) {
                     <h1>TaskNote</h1>
                 </div>
                 <div className="header-right">
+                    {username && <span className="user-name">Welcome, {username}</span>}
                     <button onClick={() => setShowSettings(true)} className="settings-btn" title="Settings">⚙️</button>
                 </div>
             </header>
 
             {showSettings && (
-                <Settings onClose={() => setShowSettings(false)} theme={theme} onThemeToggle={onThemeToggle} />
+                <Settings
+                    username={username}
+                    onUsernameChange={onUsernameChange}
+                    onClose={() => setShowSettings(false)}
+                    theme={theme}
+                    onThemeToggle={onThemeToggle}
+                />
             )}
 
             <div className="dashboard-tabs">

@@ -1,6 +1,6 @@
 import '../styles/settings.css';
 
-function Settings({ onClose, theme, onThemeToggle }) {
+function Settings({ username, onUsernameChange, onClose, theme, onThemeToggle }) {
     return (
         <div className="settings-overlay" onClick={onClose}>
             <div className="settings-modal" onClick={(e) => e.stopPropagation()}>
@@ -10,6 +10,21 @@ function Settings({ onClose, theme, onThemeToggle }) {
                 </div>
 
                 <div className="settings-content">
+                    <div className="settings-section">
+                        <h3>Username</h3>
+                        <div className="username-setting">
+                            <label htmlFor="username">Display name</label>
+                            <input
+                                id="username"
+                                type="text"
+                                value={username}
+                                onChange={(e) => onUsernameChange(e.target.value)}
+                                placeholder="Enter your username"
+                                maxLength="30"
+                            />
+                        </div>
+                    </div>
+
                     <div className="settings-section">
                         <h3>Appearance</h3>
 

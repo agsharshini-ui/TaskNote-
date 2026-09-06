@@ -213,3 +213,25 @@
         padding: 16px;
     }
 }
+
+.username-setting {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.username-setting label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.username-setting input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font: inherit;
+}
