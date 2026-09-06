@@ -130,11 +130,31 @@
 }
 
 .task-checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+    appearance: none;
+    width: 28px;
+    height: 28px;
     flex-shrink: 0;
-    accent-color: #667eea;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 23px;
+    font-weight: 900;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.task-checkbox:hover {
+    color: #2f8b91;
+    transform: scale(1.15);
+}
+
+.task-checkbox.checked {
+    color: #2f8b91;
 }
 
 .task-title {

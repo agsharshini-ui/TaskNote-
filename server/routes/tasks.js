@@ -56,7 +56,7 @@ router.put('/:id', async (req, res, next) => {
     const task = await Task.findById(req.params.id);
     if (!task) return res.status(404).json({ message: 'Not found' });
 
-    const updates = ['title', 'description', 'status', 'priority', 'dueDate'].reduce((acc, key) => {
+    const updates = ['title', 'description', 'status', 'priority', 'dueDate', 'completed'].reduce((acc, key) => {
       if (req.body[key] !== undefined) acc[key] = req.body[key];
       return acc;
     }, {});

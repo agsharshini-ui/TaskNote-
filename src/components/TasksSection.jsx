@@ -61,6 +61,10 @@ function TasksSection() {
     };
 
     const toggleTask = async (taskId, completed) => {
+        setTasks(currentTasks => currentTasks.map(task => (
+            task._id === taskId ? { ...task, completed: !completed } : task
+        )));
+
         try {
             const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
                 method: 'PATCH',
@@ -71,9 +75,15 @@ function TasksSection() {
             if (response.ok) {
                 await fetchTasks();
             } else {
+                setTasks(currentTasks => currentTasks.map(task => (
+                    task._id === taskId ? { ...task, completed } : task
+                )));
                 setError(await getResponseMessage(response, 'Failed to update task'));
             }
         } catch (err) {
+            setTasks(currentTasks => currentTasks.map(task => (
+                task._id === taskId ? { ...task, completed } : task
+            )));
             setError(err.message || 'Error updating task');
         }
     };
@@ -127,12 +137,15 @@ function TasksSection() {
                 <ul className="tasks-list">
                     {tasks.map(task => (
                         <li key={task._id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                            <input
-                                type="checkbox"
-                                checked={task.completed}
-                                onChange={() => toggleTask(task._id, task.completed)}
-                                className="task-checkbox"
-                            />
+                            <button
+                                type="button"
+                                className={`task-checkbox ${task.completed ? 'checked' : ''}`}
+                                aria-label={task.completed ? 'Mark task incomplete' : 'Mark task complete'}
+                                aria-pressed={Boolean(task.completed)}
+                                onClick={() => toggleTask(task._id, Boolean(task.completed))}
+                            >
+                                {task.completed ? '✓' : ''}
+                            </button>
                             <span className="task-title">{task.title}</span>
                             <button
                                 onClick={() => deleteTask(task._id)}
