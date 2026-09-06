@@ -12,7 +12,7 @@ function DashboardPage({ user, token, onLogout, theme, onThemeToggle }) {
         <div className="dashboard-container">
             <header className="dashboard-header">
                 <div className="header-left">
-                    <h1>Notepad</h1>
+                    <h1>TaskNote</h1>
                 </div>
                 <div className="header-right">
                     <span className="user-name">Welcome, {user?.name || user?.email}</span>

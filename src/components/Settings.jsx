@@ -32,7 +32,7 @@ function Settings({ onClose, theme, onThemeToggle }) {
                     <div className="settings-section">
                         <h3>About</h3>
                         <div className="about-info">
-                            <p><strong>Application:</strong> Notepad</p>
+                            <p><strong>Application:</strong> TaskNote</p>
                             <p><strong>Version:</strong> 1.0.0</p>
                             <p><strong>Description:</strong> A modern notes and task manager for productivity</p>
                         </div>

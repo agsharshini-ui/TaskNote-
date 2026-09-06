@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../styles/auth.css';
+import API_BASE_URL from '../config/api';
 
 function AuthPage({ onLogin, theme, onThemeToggle }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -22,7 +23,7 @@ function AuthPage({ onLogin, theme, onThemeToggle }) {
                 ? { email: formData.email, password: formData.password }
                 : formData;
 
-            const response = await fetch(`https://todo-list-app-n9pm.onrender.com/api/auth/${endpoint}`, {
+            const response = await fetch(`${API_BASE_URL}/api/auth/${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -49,7 +50,7 @@ function AuthPage({ onLogin, theme, onThemeToggle }) {
             </button>
 
             <div className="auth-card">
-                <h1>Notepad</h1>
+                <h1>TaskNote</h1>
                 <p className="subtitle">Notes & Task Manager</p>
 
                 <form onSubmit={handleSubmit}>

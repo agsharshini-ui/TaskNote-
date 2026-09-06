@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
+import API_BASE_URL from './config/api';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -24,7 +25,7 @@ function App() {
 
   const verifyToken = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.ok) {

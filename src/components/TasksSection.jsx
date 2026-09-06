@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/tasks.css';
+import API_BASE_URL from '../config/api';
 
 function TasksSection({ token }) {
     const [tasks, setTasks] = useState([]);
@@ -14,7 +15,7 @@ function TasksSection({ token }) {
     const fetchTasks = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/tasks', {
+            const response = await fetch(`${API_BASE_URL}/api/tasks`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (response.ok) {
@@ -35,7 +36,7 @@ function TasksSection({ token }) {
         if (!newTask.trim()) return;
 
         try {
-            const response = await fetch('http://localhost:5000/api/tasks', {
+            const response = await fetch(`${API_BASE_URL}/api/tasks`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ function TasksSection({ token }) {
 
     const toggleTask = async (taskId, completed) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ function TasksSection({ token }) {
 
     const deleteTask = async (taskId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
             });

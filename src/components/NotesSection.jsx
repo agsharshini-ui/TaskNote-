@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/notes.css';
+import API_BASE_URL from '../config/api';
 
 function NotesSection({ token }) {
     const [notes, setNotes] = useState([]);
@@ -15,7 +16,7 @@ function NotesSection({ token }) {
     const fetchNotes = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/notes', {
+            const response = await fetch(`${API_BASE_URL}/api/notes`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (response.ok) {
@@ -36,7 +37,7 @@ function NotesSection({ token }) {
         if (!newNote.title.trim() || !newNote.content.trim()) return;
 
         try {
-            const response = await fetch('http://localhost:5000/api/notes', {
+            const response = await fetch(`${API_BASE_URL}/api/notes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ function NotesSection({ token }) {
 
     const updateNote = async (noteId, title, content) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/notes/${noteId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/notes/${noteId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ function NotesSection({ token }) {
 
     const deleteNote = async (noteId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/notes/${noteId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/notes/${noteId}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
             });

@@ -1,4 +1,4 @@
-# NOTEPAD— Professional To‑Do-LIST + Notes web app
+# TaskNote - Professional To-Do List and Notes Web App
 
 ## Overview
 
@@ -69,6 +69,7 @@ Create a `.env` file in `server/` with the values below (see `server/.env.exampl
 - `MONGO_URI` — MongoDB Atlas connection string
 - `JWT_SECRET` — secret used to sign JWT tokens
 - `PORT` — optional server port (default 5000)
+- `VITE_API_URL` — optional client API base URL (defaults to the deployed Render API)
 
 ## API (examples)
 
