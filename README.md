@@ -5,7 +5,7 @@
 TaskNote is a full-stack productivity application combining a task manager and a personal notepad. It provides a minimal black-and-white design system, responsive UI, and a REST API backed by MongoDB.
                                                                                                                          ##Live Demo
 
-🌐 **Application:** https://task-note-as37erl9-gowri-todo-app.vercel.app
+🌐 **Application:**task-note-8zuo9a0oa-gowri-todo-app.vercel.app
 
 
 ## Repository layout
