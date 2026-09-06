@@ -4,7 +4,7 @@ import TasksSection from '../components/TasksSection';
 import NotesSection from '../components/NotesSection';
 import Settings from '../components/Settings';
 
-function DashboardPage({ username, onUsernameChange, theme, onThemeToggle }) {
+function DashboardPage({ username, onUsernameChange, theme, onThemeChange }) {
     const [activeTab, setActiveTab] = useState('tasks');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -12,6 +12,7 @@ function DashboardPage({ username, onUsernameChange, theme, onThemeToggle }) {
         <div className="dashboard-container">
             <header className="dashboard-header">
                 <div className="header-left">
+                    <span className="brand-kicker">A quieter place to get things done</span>
                     <h1>TaskNote</h1>
                 </div>
                 <div className="header-right">
@@ -26,7 +27,7 @@ function DashboardPage({ username, onUsernameChange, theme, onThemeToggle }) {
                     onUsernameChange={onUsernameChange}
                     onClose={() => setShowSettings(false)}
                     theme={theme}
-                    onThemeToggle={onThemeToggle}
+                    onThemeChange={onThemeChange}
                 />
             )}
 

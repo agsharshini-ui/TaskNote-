@@ -83,9 +83,17 @@ function TasksSection() {
 
     return (
         <div className="tasks-section">
-            <h2>My Tasks</h2>
+            <div className="section-heading">
+                <div>
+                    <p className="section-kicker">Today</p>
+                    <h2>My Tasks</h2>
+                    <p className="section-description">Keep the next important thing within reach.</p>
+                </div>
+                <span className="section-count">{tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}</span>
+            </div>
 
             <form onSubmit={addTask} className="task-form">
+                <span className="form-mark">+</span>
                 <input
                     type="text"
                     value={newTask}
@@ -93,7 +101,7 @@ function TasksSection() {
                     placeholder="Add a new task..."
                     className="task-input"
                 />
-                <button type="submit" className="add-btn">Add Task</button>
+                <button type="submit" className="add-btn">Add task</button>
             </form>
 
             {error && <div className="error-message">{error}</div>}

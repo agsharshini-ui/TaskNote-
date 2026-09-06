@@ -1,6 +1,17 @@
+import { useState } from 'react';
 import '../styles/settings.css';
 
-function Settings({ username, onUsernameChange, onClose, theme, onThemeToggle }) {
+function Settings({ username, onUsernameChange, onClose, theme, onThemeChange }) {
+    const [draftUsername, setDraftUsername] = useState(username);
+
+    const saveUsername = () => {
+        const nextUsername = draftUsername.trim();
+        if (nextUsername) {
+            onUsernameChange(nextUsername);
+            onClose();
+        }
+    };
+
     return (
         <div className="settings-overlay" onClick={onClose}>
             <div className="settings-modal" onClick={(e) => e.stopPropagation()}>
@@ -18,7 +29,7 @@ function Settings({ username, onUsernameChange, onClose, theme, onThemeToggle })
                                 id="username"
                                 type="text"
                                 value={username}
-                                onChange={(e) => onUsernameChange(e.target.value)}
+                                onChange={(e) => setDraftUsername(e.target.value)}
                                 placeholder="Enter your username"
                                 maxLength="30"
                             />
@@ -36,9 +47,15 @@ function Settings({ username, onUsernameChange, onClose, theme, onThemeToggle })
                             <div className="setting-control">
                                 <button
                                     className={`theme-btn ${theme === 'light' ? 'active' : ''}`}
-                                    onClick={() => onThemeToggle()}
+                                    onClick={() => onThemeChange('light')}
                                 >
-                                    {theme === 'light' ? '☀️ Light' : '🌙 Dark'}
+                                    ☀️ Light
+                                </button>
+                                <button
+                                    className={`theme-btn ${theme === 'dark' ? 'active' : ''}`}
+                                    onClick={() => onThemeChange('dark')}
+                                >
+                                    🌙 Dark
                                 </button>
                             </div>
                         </div>
@@ -55,7 +72,7 @@ function Settings({ username, onUsernameChange, onClose, theme, onThemeToggle })
                 </div>
 
                 <div className="settings-footer">
-                    <button className="btn-close" onClick={onClose}>Close</button>
+                    <button className="btn-close" onClick={saveUsername}>Save changes</button>
                 </div>
             </div>
         </div>

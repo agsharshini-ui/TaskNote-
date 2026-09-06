@@ -7,9 +7,9 @@
 }
 
 .dashboard-header {
-    background: var(--primary-gradient);
+    background: linear-gradient(120deg, #102f3b 0%, #1e5360 58%, #d47c58 150%);
     color: white;
-    padding: 20px 40px;
+    padding: 28px 40px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,12 +18,23 @@
 
 .dashboard-header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 34px;
+    letter-spacing: -1px;
 }
 
 .header-left {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.brand-kicker {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .header-right {
@@ -102,7 +113,7 @@
 
 .dashboard-content {
     flex: 1;
-    padding: 40px;
+    padding: 48px 40px 64px;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -127,4 +138,12 @@
     .dashboard-content {
         padding: 20px;
     }
+}
+
+.dashboard-content::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 95% 20%, rgba(212, 124, 88, 0.08), transparent 28%);
 }

@@ -124,6 +124,8 @@
 
 .setting-control {
     flex-shrink: 0;
+    display: flex;
+    gap: 8px;
 }
 
 .theme-btn {

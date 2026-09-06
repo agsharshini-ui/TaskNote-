@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import DashboardPage from './pages/DashboardPage';
+import UsernamePage from './pages/UsernamePage';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -15,10 +16,6 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
   const updateUsername = (value) => {
     const nextUsername = value.trim();
     setUsername(nextUsername);
@@ -27,12 +24,20 @@ function App() {
 
   return (
     <div className="app">
-      <DashboardPage
-        username={username}
-        onUsernameChange={updateUsername}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-      />
+      {username ? (
+        <DashboardPage
+          username={username}
+          onUsernameChange={updateUsername}
+          theme={theme}
+          onThemeChange={setTheme}
+        />
+      ) : (
+        <UsernamePage
+          onContinue={updateUsername}
+          theme={theme}
+          onThemeToggle={() => setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')}
+        />
+      )}
     </div>
   );
 }

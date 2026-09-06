@@ -85,9 +85,23 @@ function NotesSection() {
 
     return (
         <div className="notes-section">
-            <h2>My Notes</h2>
+            <div className="section-heading">
+                <div>
+                    <p className="section-kicker">Your thinking space</p>
+                    <h2>My Notes</h2>
+                    <p className="section-description">Capture ideas before they disappear.</p>
+                </div>
+                <span className="section-count">{notes.length} {notes.length === 1 ? 'note' : 'notes'}</span>
+            </div>
 
             <form onSubmit={addNote} className="note-form">
+                <div className="form-heading">
+                    <span className="form-mark">✦</span>
+                    <div>
+                        <strong>Start a new note</strong>
+                        <span>Give an idea a place to land.</span>
+                    </div>
+                </div>
                 <input
                     type="text"
                     value={newNote.title}

@@ -1,0 +1,113 @@
+.username-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px 20px;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(79, 109, 245, 0.12), transparent 32%),
+        radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12), transparent 30%),
+        var(--bg-primary);
+    position: relative;
+}
+
+.username-theme-toggle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.username-card {
+    width: min(100%, 460px);
+    padding: 48px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 24px 70px var(--shadow-hover);
+    animation: username-reveal 0.45s ease both;
+}
+
+.username-kicker {
+    color: #4f6df5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.username-card h1 {
+    margin-top: 12px;
+    color: var(--text-primary);
+    font-size: clamp(32px, 7vw, 48px);
+    line-height: 1.05;
+}
+
+.username-description {
+    margin-top: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.username-form {
+    display: grid;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.username-form label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.username-form input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    outline: none;
+}
+
+.username-form input:focus {
+    border-color: #4f6df5;
+    box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.15);
+}
+
+.username-form button {
+    margin-top: 8px;
+    padding: 13px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #4f6df5;
+    color: #fff;
+    font-weight: 700;
+}
+
+.username-form button:hover {
+    background: #3e59d4;
+}
+
+@keyframes username-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 520px) {
+    .username-card {
+        padding: 32px 24px;
+    }
+}
