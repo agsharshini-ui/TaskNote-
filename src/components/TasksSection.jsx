@@ -8,6 +8,15 @@ function TasksSection() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    const getResponseMessage = async (response, fallback) => {
+        try {
+            const data = await response.json();
+            return data.message || data.errors?.map(item => item.msg).join(', ') || fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
     useEffect(() => {
         fetchTasks();
     }, []);
@@ -20,7 +29,7 @@ function TasksSection() {
                 const data = await response.json();
                 setTasks(data.tasks || []);
             } else {
-                setError('Failed to load tasks');
+                setError(await getResponseMessage(response, 'Failed to load tasks'));
             }
         } catch (err) {
             setError(err.message || 'Error loading tasks');
@@ -44,7 +53,7 @@ function TasksSection() {
                 setNewTask('');
                 await fetchTasks();
             } else {
-                setError('Failed to add task');
+                setError(await getResponseMessage(response, 'Failed to add task'));
             }
         } catch (err) {
             setError(err.message || 'Error adding task');
@@ -61,6 +70,8 @@ function TasksSection() {
 
             if (response.ok) {
                 await fetchTasks();
+            } else {
+                setError(await getResponseMessage(response, 'Failed to update task'));
             }
         } catch (err) {
             setError(err.message || 'Error updating task');
@@ -75,6 +86,8 @@ function TasksSection() {
 
             if (response.ok) {
                 await fetchTasks();
+            } else {
+                setError(await getResponseMessage(response, 'Failed to delete task'));
             }
         } catch (err) {
             setError(err.message || 'Error deleting task');

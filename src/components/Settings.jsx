@@ -28,7 +28,7 @@ function Settings({ username, onUsernameChange, onClose, theme, onThemeChange })
                             <input
                                 id="username"
                                 type="text"
-                                value={username}
+                                value={draftUsername}
                                 onChange={(e) => setDraftUsername(e.target.value)}
                                 placeholder="Enter your username"
                                 maxLength="30"

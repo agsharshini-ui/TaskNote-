@@ -9,6 +9,15 @@ function NotesSection() {
     const [error, setError] = useState('');
     const [editingId, setEditingId] = useState(null);
 
+    const getResponseMessage = async (response, fallback) => {
+        try {
+            const data = await response.json();
+            return data.message || data.errors?.map(item => item.msg).join(', ') || fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
     useEffect(() => {
         fetchNotes();
     }, []);
@@ -21,7 +30,7 @@ function NotesSection() {
                 const data = await response.json();
                 setNotes(data.notes || []);
             } else {
-                setError('Failed to load notes');
+                setError(await getResponseMessage(response, 'Failed to load notes'));
             }
         } catch (err) {
             setError(err.message || 'Error loading notes');
@@ -45,7 +54,7 @@ function NotesSection() {
                 setNewNote({ title: '', content: '' });
                 await fetchNotes();
             } else {
-                setError('Failed to add note');
+                setError(await getResponseMessage(response, 'Failed to add note'));
             }
         } catch (err) {
             setError(err.message || 'Error adding note');
@@ -63,6 +72,8 @@ function NotesSection() {
             if (response.ok) {
                 setEditingId(null);
                 await fetchNotes();
+            } else {
+                setError(await getResponseMessage(response, 'Failed to update note'));
             }
         } catch (err) {
             setError(err.message || 'Error updating note');
@@ -77,6 +88,8 @@ function NotesSection() {
 
             if (response.ok) {
                 await fetchNotes();
+            } else {
+                setError(await getResponseMessage(response, 'Failed to delete note'));
             }
         } catch (err) {
             setError(err.message || 'Error deleting note');
