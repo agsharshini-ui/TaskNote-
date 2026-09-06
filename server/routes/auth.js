@@ -19,7 +19,8 @@ router.post(
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-      const { name, email, password } = req.body;
+      const { name, password } = req.body;
+      const email = req.body.email.trim().toLowerCase();
       const existing = await User.findOne({ email });
       if (existing) return res.status(400).json({ message: 'Email already registered' });
 
@@ -43,7 +44,8 @@ router.post(
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-      const { email, password } = req.body;
+      const { password } = req.body;
+      const email = req.body.email.trim().toLowerCase();
       const user = await User.findOne({ email });
       if (!user) return res.status(400).json({ message: 'Invalid credentials' });
 

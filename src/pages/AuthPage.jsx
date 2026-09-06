@@ -20,8 +20,8 @@ function AuthPage({ onLogin, theme, onThemeToggle }) {
         try {
             const endpoint = isLogin ? 'login' : 'register';
             const payload = isLogin
-                ? { email: formData.email, password: formData.password }
-                : formData;
+                ? { email: formData.email.trim().toLowerCase(), password: formData.password }
+                : { ...formData, email: formData.email.trim().toLowerCase() };
 
             const response = await fetch(`${API_BASE_URL}/api/auth/${endpoint}`, {
                 method: 'POST',
@@ -34,7 +34,8 @@ function AuthPage({ onLogin, theme, onThemeToggle }) {
             if (response.ok) {
                 onLogin(data.token, data.user);
             } else {
-                setError(data.message || 'Authentication failed');
+                const validationMessage = data.errors?.map(item => item.msg).join(', ');
+                setError(data.message || validationMessage || 'Authentication failed');
             }
         } catch (err) {
             setError(err.message || 'Network error');
